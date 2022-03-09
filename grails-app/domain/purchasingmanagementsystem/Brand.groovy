@@ -1,26 +1,29 @@
 package purchasingmanagementsystem
 /**
- * The Status entity.
+ * The Brand entity.
  *
  * @author  Nancy Campusano  
  *
  *
  */
-class Status {
+
+class Brand {
     static mapping = {
-         table 'STATUS'
+         table 'BRAND'
          // version is set to false, because this isn't available by default for legacy databases
          version false
-         id generator:'identity', column:'STATUS_ID'
+         id generator:'identity', column:'BRAND_ID'
     }
-    Integer statusId
+    Integer brandId
     String description
+    Boolean isActive
 
     static constraints = {
-        statusId(max: 2147483647)
-        description(size: 1..40, blank: false)
+        brandId(max: 2147483647)
+        description(size: 1..200, blank: false)
+        isActive()
     }
     String toString() {
-        return "${statusId}" 
+        return "${brandId}" 
     }
 }

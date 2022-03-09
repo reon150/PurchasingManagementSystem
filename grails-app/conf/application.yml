@@ -98,21 +98,18 @@ dataSource:
     jmxExport: true
     driverClassName: com.mysql.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    username: shopping
+    username: purchasingmanagementsystem
     password: kikla
 
 environments:
     development:
         dataSource:
             dbCreate: create-drop
-            url: jdbc:mysql://192.168.122.20:3306/shopping?useUnicode=yes&characterEncoding=UTF-8
-        dataSource:
-            dbCreate: update
-            url: jdbc:mysql://192.168.122.20:3306/shopping?useUnicode=yes&characterEncoding=UTF-8
+            url: jdbc:mysql://192.168.122.20:3306/purchasingmanagementsystem?useUnicode=yes&characterEncoding=UTF-8
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:mysql://192.168.122.20:3306/shopping?useUnicode=yes&characterEncoding=UTF-8
+            url: jdbc:mysql://192.168.122.20:3306/purchasingmanagementsystem?useUnicode=yes&characterEncoding=UTF-8
             properties:
                 jmxEnabled: true
                 initialSize: 5
