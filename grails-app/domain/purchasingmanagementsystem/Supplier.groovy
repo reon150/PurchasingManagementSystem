@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The Supplier entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class Supplier {
     static mapping = {
          table 'SUPPLIER'

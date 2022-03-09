@@ -1,11 +1,4 @@
 package purchasingmanagementsystem
-/**
- * The Brand entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
 
 class Brand {
     static mapping = {
