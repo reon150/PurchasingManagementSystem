@@ -9,7 +9,6 @@ class Article {
          measurementUnitIdMeasurementUnit column:'MEASUREMENT_UNIT_ID'
          brandIdBrand column:'BRAND_ID'
     }
-    Integer articleId
     String description
     Integer existance
     Boolean isActive
@@ -20,15 +19,11 @@ class Article {
     Brand brandIdBrand
 
     static constraints = {
-        articleId(max: 2147483647)
         description(size: 1..50, blank: false)
         existance(max: 2147483647)
         isActive()
         price()
         measurementUnitIdMeasurementUnit()
         brandIdBrand()
-    }
-    String toString() {
-        return "${articleId}" 
     }
 }

@@ -7,14 +7,9 @@ class Status {
          version false
          id generator:'identity', column:'STATUS_ID'
     }
-    Integer statusId
     String description
 
     static constraints = {
-        statusId(max: 2147483647)
         description(size: 1..40, blank: false)
-    }
-    String toString() {
-        return "${statusId}" 
     }
 }

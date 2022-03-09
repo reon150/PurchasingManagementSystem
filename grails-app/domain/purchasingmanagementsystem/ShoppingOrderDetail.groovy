@@ -11,7 +11,6 @@ class ShoppingOrderDetail {
          measurementUnitIdMeasurementUnit column:'MEASUREMENT_UNIT_ID'
          articleIdArticle column:'ARTICLE_ID'
     }
-    Integer orderDetailId
     java.math.BigDecimal price
     Integer quantity
     Integer articleName
@@ -25,7 +24,6 @@ class ShoppingOrderDetail {
     Article articleIdArticle
 
     static constraints = {
-        orderDetailId(max: 2147483647)
         price()
         quantity(max: 2147483647)
         articleName(nullable: true, max: 2147483647)
@@ -33,8 +31,5 @@ class ShoppingOrderDetail {
         requestIdArticleRequest()
         measurementUnitIdMeasurementUnit()
         articleIdArticle()
-    }
-    String toString() {
-        return "${orderDetailId}" 
     }
 }

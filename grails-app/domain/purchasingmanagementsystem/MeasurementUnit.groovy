@@ -7,16 +7,11 @@ class MeasurementUnit {
          version false
          id generator:'identity', column:'UNIT_ID'
     }
-    Integer unitId
     String description
     Boolean isActive
 
     static constraints = {
-        unitId(max: 2147483647)
         description(size: 1..200, blank: false)
         isActive()
-    }
-    String toString() {
-        return "${unitId}" 
     }
 }

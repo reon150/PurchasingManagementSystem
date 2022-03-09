@@ -7,16 +7,11 @@ class Brand {
          version false
          id generator:'identity', column:'BRAND_ID'
     }
-    Integer brandId
     String description
     Boolean isActive
 
     static constraints = {
-        brandId(max: 2147483647)
         description(size: 1..200, blank: false)
         isActive()
-    }
-    String toString() {
-        return "${brandId}" 
     }
 }

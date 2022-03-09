@@ -11,7 +11,6 @@ class ArticleRequest {
          employeeIdEmployee column:'EMPLOYEE_ID'
          articleIdArticle column:'ARTICLE_ID'
     }
-    Integer requestId
     Date requestDate
     Integer quantity
     Boolean isActive
@@ -25,7 +24,6 @@ class ArticleRequest {
     Article articleIdArticle
 
     static constraints = {
-        requestId(max: 2147483647)
         requestDate()
         quantity(max: 2147483647)
         isActive()
@@ -33,8 +31,5 @@ class ArticleRequest {
         measurementUnitIdMeasurementUnit()
         employeeIdEmployee()
         articleIdArticle()
-    }
-    String toString() {
-        return "${requestId}" 
     }
 }

@@ -9,7 +9,6 @@ class ShoppingOrder {
          supplierIdSupplier column:'SUPPLIER_ID'
          statusIdStatus column:'STATUS_ID'
     }
-    Integer orderId
     Date orderDate
     // Relation
     Supplier supplierIdSupplier
@@ -17,12 +16,8 @@ class ShoppingOrder {
     Status statusIdStatus
 
     static constraints = {
-        orderId(max: 2147483647)
         orderDate()
         supplierIdSupplier()
         statusIdStatus()
-    }
-    String toString() {
-        return "${orderId}" 
     }
 }
