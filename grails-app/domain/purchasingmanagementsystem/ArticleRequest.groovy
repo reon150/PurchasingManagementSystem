@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The ArticleRequest entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class ArticleRequest {
     static mapping = {
          table 'ARTICLE_REQUEST'

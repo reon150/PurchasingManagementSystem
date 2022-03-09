@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The Status entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class Status {
     static mapping = {
          table 'STATUS'

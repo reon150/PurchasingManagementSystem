@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The ShoppingOrderDetail entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class ShoppingOrderDetail {
     static mapping = {
          table 'SHOPPING_ORDER_DETAIL'

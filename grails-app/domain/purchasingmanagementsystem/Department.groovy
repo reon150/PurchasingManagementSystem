@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The Department entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class Department {
     static mapping = {
          table 'DEPARTMENT'

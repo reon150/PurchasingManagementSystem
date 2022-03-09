@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The MeasurementUnit entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class MeasurementUnit {
     static mapping = {
          table 'MEASUREMENT_UNIT'

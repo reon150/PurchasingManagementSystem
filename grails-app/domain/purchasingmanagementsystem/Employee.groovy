@@ -1,11 +1,5 @@
 package purchasingmanagementsystem
-/**
- * The Employee entity.
- *
- * @author  Nancy Campusano  
- *
- *
- */
+
 class Employee {
     static mapping = {
          table 'EMPLOYEE'
