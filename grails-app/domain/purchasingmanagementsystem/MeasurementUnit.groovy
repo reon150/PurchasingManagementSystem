@@ -14,4 +14,7 @@ class MeasurementUnit {
         description(size: 1..200, blank: false)
         isActive()
     }
+
+    @Override
+    public String toString() { return description }
 }

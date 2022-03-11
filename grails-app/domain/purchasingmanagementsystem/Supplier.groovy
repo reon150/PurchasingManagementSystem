@@ -18,4 +18,7 @@ class Supplier {
         comercialName(size: 1..25, blank: false)
         isActive()
     }
+
+    @Override
+    public String toString() { return description }
 }

@@ -9,6 +9,7 @@ class ShoppingOrder {
          supplierIdSupplier column:'SUPPLIER_ID'
          statusIdStatus column:'STATUS_ID'
     }
+    Integer id
     Date orderDate
     // Relation
     Supplier supplierIdSupplier
@@ -19,5 +20,10 @@ class ShoppingOrder {
         orderDate()
         supplierIdSupplier()
         statusIdStatus()
+    }
+
+    @Override
+    public String toString() {
+        return "Order no. " + id
     }
 }

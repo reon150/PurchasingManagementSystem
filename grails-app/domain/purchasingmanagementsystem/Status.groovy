@@ -10,6 +10,9 @@ class Status {
     String description
 
     static constraints = {
-        description(size: 1..40, blank: false)
+        description(size: 3..40, blank: false)
     }
+
+    @Override
+    public String toString() { return description }
 }

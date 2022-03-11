@@ -14,4 +14,7 @@ class Department {
         departmentName(size: 1..100, blank: false)
         isActive()
     }
+
+    @Override
+    public String toString() { return departmentName }
 }

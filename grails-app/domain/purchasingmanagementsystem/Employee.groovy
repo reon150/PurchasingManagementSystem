@@ -22,4 +22,9 @@ class Employee {
         isactive(size: 1..1, blank: false)
         departmentIdDepartment()
     }
+
+    @Override
+    public String toString() {
+        return  firstName + " " + lastName
+    }
 }

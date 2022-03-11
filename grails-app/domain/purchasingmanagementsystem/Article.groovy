@@ -26,4 +26,7 @@ class Article {
         measurementUnitIdMeasurementUnit()
         brandIdBrand()
     }
+
+    @Override
+    public String toString() { return description }
 }

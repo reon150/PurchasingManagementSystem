@@ -11,6 +11,7 @@ class ShoppingOrderDetail {
          measurementUnitIdMeasurementUnit column:'MEASUREMENT_UNIT_ID'
          articleIdArticle column:'ARTICLE_ID'
     }
+    Integer id
     java.math.BigDecimal price
     Integer quantity
     Integer articleName
@@ -31,5 +32,10 @@ class ShoppingOrderDetail {
         requestIdArticleRequest()
         measurementUnitIdMeasurementUnit()
         articleIdArticle()
+    }
+
+    @Override
+    public String toString() {
+        return "Order Detail no. " + id + "Article " + articleIdArticle.toString()
     }
 }

@@ -11,6 +11,7 @@ class ArticleRequest {
          employeeIdEmployee column:'EMPLOYEE_ID'
          articleIdArticle column:'ARTICLE_ID'
     }
+    Integer id
     Date requestDate
     Integer quantity
     Boolean isActive
@@ -31,5 +32,10 @@ class ArticleRequest {
         measurementUnitIdMeasurementUnit()
         employeeIdEmployee()
         articleIdArticle()
+    }
+
+    @Override
+    public String toString() {
+        return "Request: " + id + "-" + articleIdArticle.toString()
     }
 }
