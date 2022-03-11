@@ -2,24 +2,24 @@ package purchasingmanagementsystem
 
 class ShoppingOrder {
     static mapping = {
-         table 'SHOPPING_ORDER'
-         // version is set to false, because this isn't available by default for legacy databases
-         version false
-         id generator:'identity', column:'ORDER_ID'
-         supplierIdSupplier column:'SUPPLIER_ID'
-         statusIdStatus column:'STATUS_ID'
+        table 'SHOPPING_ORDER'
+        // version is set to false, because this isn't available by default for legacy databases
+        version false
+        id generator:'identity', column:'ORDER_ID'
+        supplier column:'SUPPLIER_ID'
+        status column:'STATUS_ID'
     }
     Integer id
     Date orderDate
     // Relation
-    Supplier supplierIdSupplier
+    Supplier supplier
     // Relation
-    Status statusIdStatus
+    Status status
 
     static constraints = {
         orderDate()
-        supplierIdSupplier()
-        statusIdStatus()
+        supplier()
+        status()
     }
 
     @Override

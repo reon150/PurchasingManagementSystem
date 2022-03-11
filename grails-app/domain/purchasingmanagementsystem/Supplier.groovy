@@ -2,10 +2,10 @@ package purchasingmanagementsystem
 
 class Supplier {
     static mapping = {
-         table 'SUPPLIER'
-         // version is set to false, because this isn't available by default for legacy databases
-         version false
-         id generator:'identity', column:'SUPPLIER_ID'
+        table 'SUPPLIER'
+        // version is set to false, because this isn't available by default for legacy databases
+        version false
+        id generator:'identity', column:'SUPPLIER_ID'
     }
     String description
     String identificationNumber
