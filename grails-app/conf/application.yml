@@ -98,8 +98,8 @@ dataSource:
     jmxExport: true
     driverClassName: com.mysql.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    username: purchasingmanagementsystem
-    password: kikla
+    username: sa
+    password: 
 
 environments:
     development:
