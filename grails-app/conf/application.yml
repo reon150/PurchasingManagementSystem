@@ -104,11 +104,11 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: none
+            dbCreate: update
             url: jdbc:mysql://localhost:3306/purchasingmanagementsystem?useUnicode=yes&characterEncoding=UTF-8
     production:
         dataSource:
-            dbCreate: none
+            dbCreate: update
             url: jdbc:mysql://localhost:3306/purchasingmanagementsystem?useUnicode=yes&characterEncoding=UTF-8
             properties:
                 jmxEnabled: true
