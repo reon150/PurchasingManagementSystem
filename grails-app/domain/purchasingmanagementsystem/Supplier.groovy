@@ -17,6 +17,9 @@ class Supplier {
         identificationNumber(size: 1..11, blank: false)
         comercialName(size: 1..25, blank: false)
         isActive()
+        identificationNumber validator: {
+            return ValidatorUtil.isAValidIdentityDocument(it) || ValidatorUtil.isAValidJuridicTaxpayerIdentificationNumber(it)
+        }
     }
 
     @Override

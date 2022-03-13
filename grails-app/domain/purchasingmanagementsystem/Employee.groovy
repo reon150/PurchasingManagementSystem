@@ -21,6 +21,9 @@ class Employee {
         lastName(size: 1..60, blank: false)
         isactive(size: 1..1, blank: false)
         department()
+        identificationNumber validator: {
+            return ValidatorUtil.isAValidIdentityDocument(it)
+        }
     }
 
     @Override
