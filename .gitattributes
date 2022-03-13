@@ -1,13 +1,13 @@
 # Minified JavaScript and CSS
-- (\.|-)min\.(js|css)$
+*(\.|-)min\.(js|css)$ text
 
 # jQuery
-- (^|/)jquery([^.]*)\.js$
-- (^|/)jquery\-\d\.\d+(\.\d+)?\.js$
+*(^|/)jquery([^.]*)\.js$ text
+*(^|/)jquery\-\d\.\d+(\.\d+)?\.js$ text
 
 # Bootstrap css and js
-- (^|/)bootstrap([^/.]*)\.(js|css|less|scss|styl)$
-- (^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$
+*(^|/)bootstrap([^/.]*)\.(js|css|less|scss|styl)$ text
+*(^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$ text
 
 # popper.js
-- (^|/)popper([^.]*)\.js$
+*(^|/)popper([^.]*)\.js$ text
