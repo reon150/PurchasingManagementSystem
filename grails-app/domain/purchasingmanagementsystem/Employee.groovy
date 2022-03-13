@@ -16,7 +16,7 @@ class Employee {
     Department department
 
     static constraints = {
-        identificationNumber(size: 1..11, blank: false)
+        identificationNumber(size: 1..11, blank: false, unique: true)
         firstName(size: 1..60, blank: false)
         lastName(size: 1..60, blank: false)
         isactive(size: 1..1, blank: false)
