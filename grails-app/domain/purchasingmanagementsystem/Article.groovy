@@ -10,7 +10,7 @@ class Article {
         brand column:'BRAND_ID'
     }
     String description
-    Integer existance
+    Integer existence
     Boolean isActive
     BigDecimal price
     // Relation
@@ -20,9 +20,9 @@ class Article {
 
     static constraints = {
         description(size: 1..50, blank: false)
-        existance(max: 2147483647)
+        existence(min: 0, max: 2147483647)
         isActive()
-        price()
+        price(min: 1.0)
         measurementUnit()
         brand()
     }
