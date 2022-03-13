@@ -1,13 +1,13 @@
 # Minified JavaScript and CSS
-*(\.|-)min\.(js|css)$ text
+(\.|-)min\.(js|css)$ text
 
 # jQuery
-*(^|/)jquery([^.]*)\.js$ text
-*(^|/)jquery\-\d\.\d+(\.\d+)?\.js$ text
+(^|/)jquery([^.]*)\.js$ linguist-vendored=false
+(^|/)jquery\-\d\.\d+(\.\d+)?\.js$ linguist-vendored=false
 
 # Bootstrap css and js
-*(^|/)bootstrap([^/.]*)\.(js|css|less|scss|styl)$ text
-*(^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$ text
+(^|/)bootstrap([^/.]*)\.(js|css|less|scss|styl)$ linguist-vendored=false
+(^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$ linguist-vendored=false
 
 # popper.js
-*(^|/)popper([^.]*)\.js$ text
+(^|/)popper([^.]*)\.js$ linguist-vendored=false
