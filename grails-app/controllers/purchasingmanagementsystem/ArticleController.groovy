@@ -2,7 +2,9 @@ package purchasingmanagementsystem
 
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(["ROLE_ADMIN", "ROLE_USER"])
 class ArticleController {
 
     ArticleService articleService
