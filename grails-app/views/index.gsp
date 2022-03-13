@@ -2,17 +2,52 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>Welcome to Purchasing Management System</title>
 </head>
 <body>
 <content tag="nav">
     <div role="navigation">
         <ul>
-            <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+            <sec:ifNotLoggedIn>
                 <li class="controller">
-                    <g:link controller="${c.logicalPropertyName}">${c.name.capitalize()}</g:link>
+                    <g:link controller="login">Log In</g:link>
                 </li>
-            </g:each>
+            </sec:ifNotLoggedIn>
+            <sec:ifLoggedIn>
+                <li class="controller">
+                    <g:link controller="article">Article</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="articleRequest">Article Request</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="brand">Brand</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="department">Department</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="employee">Employee</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="measurementUnit">Measurement Unit</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="shoppingOrder">Shopping Order</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="shoppingOrderDetail">Shopping Order Details</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="supplier">Suppliers</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="status">Status</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="logout">Log Out</g:link>
+                </li>
+            </sec:ifLoggedIn>
         </ul>
     </div>
 </content>
