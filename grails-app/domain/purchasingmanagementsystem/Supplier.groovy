@@ -14,7 +14,7 @@ class Supplier {
 
     static constraints = {
         description(size: 1..200, blank: false)
-        identificationNumber(size: 1..11, blank: false)
+        identificationNumber(size: 1..11, blank: false, unique: true)
         comercialName(size: 1..25, blank: false)
         isActive()
         identificationNumber validator: {
