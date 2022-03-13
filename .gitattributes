@@ -9,5 +9,5 @@
 - (^|/)bootstrap([^/.]*)\.(js|css|less|scss|styl)$
 - (^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$
 
-popper.js
+# popper.js
 - (^|/)popper([^.]*)\.js$
