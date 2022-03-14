@@ -1,13 +1,9 @@
-# Minified JavaScript and CSS
-(\.|-)min\.(js|css)$ linguist-vendored
-
-# jQuery
-(^|/)jquery([^.]*)\.js$ linguist-vendored
-(^|/)jquery\-\d\.\d+(\.\d+)?\.js$ linguist-vendored
-
-# Bootstrap css and js
-(^|/)bootstrap([^/.]*)\.(js|css|less|scss|styl)$ linguist-vendored
-(^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$ linguist-vendored
-
-# popper.js
-(^|/)popper([^.]*)\.js$ linguist-vendored
+bootstrap.bundle.js linguist-vendored
+popper.js linguist-vendored
+jquery-3.5.1.js linguist-vendored
+bootstrap.js linguist-vendored
+bootstrap-grid.css linguist-vendored
+bootstrap-reboot.css linguist-vendored
+bootstrap.css linguist-vendored
+*.min.js linguist-vendored
+*.min.css linguist-vendored
