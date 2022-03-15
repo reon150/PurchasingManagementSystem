@@ -11,7 +11,7 @@ class Employee {
     String identificationNumber
     String firstName
     String lastName
-    Boolean isactive
+    Boolean isActive
     // Relation
     Department department
 
