@@ -18,7 +18,6 @@ class Employee {
         identificationNumber(size: 1..11, blank: false, unique: true)
         firstName(size: 1..60, blank: false)
         lastName(size: 1..60, blank: false)
-        isactive()
         department()
         identificationNumber validator: {
             return ValidatorUtil.isAValidIdentityDocument(it)
