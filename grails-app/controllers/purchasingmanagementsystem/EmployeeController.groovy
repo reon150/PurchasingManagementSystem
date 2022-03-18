@@ -11,9 +11,22 @@ class EmployeeController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     @Secured(["ROLE_ADMIN", "ROLE_USER"])
-    def index(Integer max) {
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond employeeService.list(params), model:[employeeCount: employeeService.count()]
+
+        if (q == null) {
+            respond employeeService.list(params), model:[employeeCount: employeeService.count()]
+        } else {
+            respond employeeService.list(params)
+                    .findAll {
+                        it.identificationNumber.toLowerCase().contains(q.toLowerCase()) ||
+                        it.firstName.toLowerCase().contains(q.toLowerCase()) ||
+                        it.lastName.toLowerCase().contains(q.toLowerCase()) ||
+                        it.department.toString().toLowerCase().contains(q.toLowerCase()) ||
+                        it.isActive.toString().toLowerCase().contains(q.toLowerCase())
+                    },
+            model:[employeeCount: employeeService.count()]
+        }
     }
 
     @Secured(["ROLE_ADMIN", "ROLE_USER"])
