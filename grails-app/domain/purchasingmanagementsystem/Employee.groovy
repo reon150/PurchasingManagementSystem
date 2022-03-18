@@ -3,8 +3,7 @@ package purchasingmanagementsystem
 class Employee {
     static mapping = {
         table 'EMPLOYEE'
-        // version is set to false, because this isn't available by default for legacy databases
-        version false
+        version true
         id generator:'identity', column:'EMPLOYEE_ID'
         department column:'DEPARTMENT_ID'
     }

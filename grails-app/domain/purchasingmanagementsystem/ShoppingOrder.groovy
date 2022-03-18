@@ -3,8 +3,7 @@ package purchasingmanagementsystem
 class ShoppingOrder {
     static mapping = {
         table 'SHOPPING_ORDER'
-        // version is set to false, because this isn't available by default for legacy databases
-        version false
+        version true
         id generator:'identity', column:'ORDER_ID'
         supplier column:'SUPPLIER_ID'
         status column:'STATUS_ID'
