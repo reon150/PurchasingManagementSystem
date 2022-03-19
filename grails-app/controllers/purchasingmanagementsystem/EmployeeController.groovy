@@ -119,6 +119,8 @@ class EmployeeController {
             }
         }
         def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+
+        header "Content-disposition", "filename=Employees.csv"
         render(text: content, contentType:"text/csv")
     }
 
