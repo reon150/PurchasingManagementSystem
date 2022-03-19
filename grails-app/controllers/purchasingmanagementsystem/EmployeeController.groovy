@@ -108,6 +108,20 @@ class EmployeeController {
         }
     }
 
+    @Secured(["ROLE_ADMIN"])
+    def export() {
+        def title = "Id,Identification Number,First name,Last Name,Is Active,Department"
+        def body = ""
+        employeeService.list().each {
+            it -> {
+                body += "${it.id},${it.identificationNumber},${it.firstName},${it.lastName},${it.isActive},${it.department.toString()}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+        render(text: content, contentType:"text/csv")
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

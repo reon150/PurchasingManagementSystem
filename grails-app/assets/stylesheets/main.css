@@ -80,6 +80,20 @@ img {
     padding: 0 0.25em;
 }
 
+.content .form {
+    display: inline-block;
+}
+
+.content .form {
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.content .form .search-btn:hover,
+.content .form .export-btn:hover {
+    background-color: #afaeae;
+}
+
 .scaffold-list h1 {
     border: none;
 }

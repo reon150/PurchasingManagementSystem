@@ -7,6 +7,7 @@ class Employee {
         id generator:'identity', column:'EMPLOYEE_ID'
         department column:'DEPARTMENT_ID'
     }
+    Integer id
     String identificationNumber
     String firstName
     String lastName
