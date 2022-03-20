@@ -11,9 +11,20 @@ class DepartmentController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond departmentService.list(params), model:[departmentCount: departmentService.count()]
+
+        if (q == null){
+            respond departmentService.list(params), model:[departmentCount: departmentService.count()]
+        } else {
+            respond departmentService.list(params)
+                .findAll{
+                    it.departmentName.toLowerCase().contains(q.toLowerCase()) ||
+                    it.isActive.toString().toLowerCase().contains(q.toLowerCase())
+                },
+            model:[departmentService: departmentService.count()]
+        }
+        
     }
 
     def show(Long id) {

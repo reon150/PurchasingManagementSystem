@@ -11,9 +11,19 @@ class MeasurementUnitController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond measurementUnitService.list(params), model:[measurementUnitCount: measurementUnitService.count()]
+
+        if (q == null){
+            respond measurementUnitService.list(params), model:[measurementUnitCount: measurementUnitService.count()]
+        } else {
+            respond measurementUnitService.list(params)
+                .findAll{
+                    it.description.toLowerCase().contains(q.toLowerCase()) ||
+                    it.isActive.toString().toLowerCase().contains(q.toLowerCase())
+                },
+            model:[measurementUnitCount: measurementUnitService.count()]
+        }
     }
 
     def show(Long id) {
