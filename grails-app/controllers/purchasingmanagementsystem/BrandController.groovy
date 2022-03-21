@@ -100,11 +100,11 @@ class BrandController {
     }
 
     def export() {
-        def title = "Description,Is Active,"
+        def title = "Id,Description,Is Active,"
         def body = ""
         brandService.list().each {
             it -> {
-                body += "${it.description},${it.isActive}"
+                body += "${it.id},${it.description},${it.isActive}"
                 body += System.lineSeparator()
             }
         }

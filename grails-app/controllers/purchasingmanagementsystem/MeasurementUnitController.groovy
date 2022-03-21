@@ -100,11 +100,11 @@ class MeasurementUnitController {
     }
 
     def export() {
-        def title = "Description,Is Active,"
+        def title = "Id,Description,Is Active,"
         def body = ""
         measurementUnitService.list().each {
             it -> {
-                body += "${it.description},${it.isActive}"
+                body += "${it.id},${it.description},${it.isActive}"
                 body += System.lineSeparator()
             }
         }

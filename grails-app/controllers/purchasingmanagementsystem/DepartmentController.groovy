@@ -101,11 +101,11 @@ class DepartmentController {
     }
 
     def export() {
-        def title = "Department Name,Is Active,"
+        def title = "Id,Department Name,Is Active,"
         def body = ""
         departmentService.list().each {
             it -> {
-                body += "${it.departmentName},${it.isActive}"
+                body += "${it.id},${it.departmentName},${it.isActive}"
                 body += System.lineSeparator()
             }
         }
