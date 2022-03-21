@@ -11,9 +11,19 @@ class BrandController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond brandService.list(params), model:[brandCount: brandService.count()]
+
+        if (q == null){
+            respond brandService.list(params), model:[brandCount: brandService.count()]
+        } else {
+            respond brandService.list(params)
+                .findAll{
+                    it.description.toLowerCase().contains(q.toLowerCase()) ||
+                    it.isActive.toString().toLowerCase().contains(q.toLowerCase())
+                },
+            model:[brandCount: brandService.count()]
+        }
     }
 
     def show(Long id) {
@@ -87,6 +97,21 @@ class BrandController {
             }
             '*'{ render status: NO_CONTENT }
         }
+    }
+
+    def export() {
+        def title = "Id,Description,Is Active,"
+        def body = ""
+        brandService.list().each {
+            it -> {
+                body += "${it.id},${it.description},${it.isActive}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+
+        header "Content-disposition", "filename=Brands.csv"
+        render(text: content, contentType:"text/csv")
     }
 
     protected void notFound() {
