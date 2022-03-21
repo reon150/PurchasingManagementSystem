@@ -99,6 +99,21 @@ class BrandController {
         }
     }
 
+    def export() {
+        def title = "Description,Is Active,"
+        def body = ""
+        brandService.list().each {
+            it -> {
+                body += "${it.description},${it.isActive}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+
+        header "Content-disposition", "filename=Brands.csv"
+        render(text: content, contentType:"text/csv")
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

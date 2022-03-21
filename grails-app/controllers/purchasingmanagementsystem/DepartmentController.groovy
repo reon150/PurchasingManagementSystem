@@ -100,6 +100,21 @@ class DepartmentController {
         }
     }
 
+    def export() {
+        def title = "Department Name,Is Active,"
+        def body = ""
+        departmentService.list().each {
+            it -> {
+                body += "${it.departmentName},${it.isActive}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+
+        header "Content-disposition", "filename=Departments.csv"
+        render(text: content, contentType:"text/csv")
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {
