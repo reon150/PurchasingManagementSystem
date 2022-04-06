@@ -13,9 +13,24 @@ class ArticleRequestController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond articleRequestService.list(params).sort { it.status }, model:[articleRequestCount: articleRequestService.count()]
+
+        if (q == null){
+            respond articleRequestService.list(params).sort { it.status }, model:[articleRequestCount: articleRequestService.count()]
+        } else {
+            respond articleRequestService.list(params)
+                .findAll{
+                    it.requestDate.toString().toLowerCase().contains(q.toLowerCase()) ||
+                    it.quantity.toString().toLowerCase().contains(q.toLowerCase()) ||
+                    it.isActive.toString().toLowerCase().contains(q.toLowerCase()) ||
+                    it.status.toString().toLowerCase().contains(q.toLowerCase()) ||
+                    it.measurementUnit.toString().toLowerCase().contains(q.toLowerCase()) ||
+                    it.employee.toString().toLowerCase().toString().contains(q.toLowerCase()) ||
+                    it.article.toString().toLowerCase().toString().contains(q.toLowerCase()) 
+                },
+            model:[articleRequestCount: articleRequestService.count()]
+        }
     }
 
     def show(Long id) {
@@ -109,6 +124,21 @@ class ArticleRequestController {
             }
             '*'{ render status: NO_CONTENT }
         }
+    }
+
+    def export() {
+        def title = "Id, Request Date, Quantity, Is Active, Status, Measurement Unit, Employee, Article"
+        def body = ""
+        articleRequestService.list().each {
+            it -> {
+                body += "${it.id},${it.requestDate},${it.isActive},${it.status},${it.measurementUnit},${it.employee},${it.article},${it.supplier}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+
+        header "Content-disposition", "filename=ArticleRequest.csv"
+        render(text: content, contentType:"text/csv")
     }
 
     protected void notFound() {
