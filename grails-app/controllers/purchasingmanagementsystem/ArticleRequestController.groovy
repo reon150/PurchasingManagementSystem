@@ -1,5 +1,6 @@
 package purchasingmanagementsystem
 
+import auth.User
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
@@ -8,12 +9,13 @@ import grails.plugin.springsecurity.annotation.Secured
 class ArticleRequestController {
 
     ArticleRequestService articleRequestService
+    ShoppingOrderService shoppingOrderService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond articleRequestService.list(params), model:[articleRequestCount: articleRequestService.count()]
+        respond articleRequestService.list(params).sort { it.status }, model:[articleRequestCount: articleRequestService.count()]
     }
 
     def show(Long id) {
@@ -31,7 +33,17 @@ class ArticleRequestController {
         }
 
         try {
-            articleRequestService.save(articleRequest)
+            if (articleRequest.getStatus().description == Constants.APPROVED) {
+                articleRequestService.save(articleRequest)
+                def shoppingOrder = new ShoppingOrder()
+                shoppingOrder.setOrderDate(new Date())
+                shoppingOrder.setStatus(Status.find{ description == Constants.ACTIVE })
+                shoppingOrder.setArticleRequest(articleRequest)
+                shoppingOrder.setIdentifier(UUID.randomUUID().toString())
+                shoppingOrderService.save(shoppingOrder)
+            } else {
+                articleRequestService.save(articleRequest)
+            }
         } catch (ValidationException e) {
             respond articleRequest.errors, view:'create'
             return
@@ -57,7 +69,17 @@ class ArticleRequestController {
         }
 
         try {
-            articleRequestService.save(articleRequest)
+            if (articleRequest.getStatus().description == Constants.APPROVED) {
+                articleRequestService.save(articleRequest)
+                def shoppingOrder = new ShoppingOrder()
+                shoppingOrder.setOrderDate(new Date())
+                shoppingOrder.setStatus(Status.find{ description == Constants.ACTIVE })
+                shoppingOrder.setArticleRequest(articleRequest)
+                shoppingOrder.setIdentifier(UUID.randomUUID().toString())
+                shoppingOrderService.save(shoppingOrder)
+            } else {
+                articleRequestService.save(articleRequest)
+            }
         } catch (ValidationException e) {
             respond articleRequest.errors, view:'edit'
             return

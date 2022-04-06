@@ -9,6 +9,7 @@ class ArticleRequest {
         measurementUnit column:'MEASUREMENT_UNIT_ID'
         employee column:'EMPLOYEE_ID'
         article column:'ARTICLE_ID'
+        supplier column:'SUPPLIER_ID'
     }
     Integer id
     Date requestDate
@@ -22,6 +23,8 @@ class ArticleRequest {
     Employee employee
     // Relation
     Article article
+    // Relation
+    Supplier supplier
 
     static constraints = {
         requestDate()
@@ -31,10 +34,11 @@ class ArticleRequest {
         measurementUnit()
         employee()
         article()
+        supplier()
     }
 
     @Override
     public String toString() {
-        return "Request: " + id + "-" + article.toString()
+        return "Request: " + id + " - " + article.toString()
     }
 }

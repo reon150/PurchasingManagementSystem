@@ -5,24 +5,27 @@ class ShoppingOrder {
         table 'SHOPPING_ORDER'
         version true
         id generator:'identity', column:'ORDER_ID'
-        supplier column:'SUPPLIER_ID'
         status column:'STATUS_ID'
+        articleRequest column:'ARTICLE_REQUEST_ID'
+
     }
+
     Integer id
     Date orderDate
-    // Relation
-    Supplier supplier
+    String identifier
     // Relation
     Status status
+    // Relation
+    ArticleRequest articleRequest
 
     static constraints = {
         orderDate()
-        supplier()
         status()
+        articleRequest()
     }
 
     @Override
     public String toString() {
-        return "Order no. " + id
+        return "Order: " + identifier  + " - Article: " + articleRequest.article.toString()
     }
 }

@@ -8,6 +8,7 @@ import grails.plugin.springsecurity.annotation.Secured
 class ShoppingOrderController {
 
     ShoppingOrderService shoppingOrderService
+    ArticleService articleService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -18,32 +19,6 @@ class ShoppingOrderController {
 
     def show(Long id) {
         respond shoppingOrderService.get(id)
-    }
-
-    def create() {
-        respond new ShoppingOrder(params)
-    }
-
-    def save(ShoppingOrder shoppingOrder) {
-        if (shoppingOrder == null) {
-            notFound()
-            return
-        }
-
-        try {
-            shoppingOrderService.save(shoppingOrder)
-        } catch (ValidationException e) {
-            respond shoppingOrder.errors, view:'create'
-            return
-        }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'shoppingOrder.label', default: 'ShoppingOrder'), shoppingOrder.id])
-                redirect shoppingOrder
-            }
-            '*' { respond shoppingOrder, [status: CREATED] }
-        }
     }
 
     def edit(Long id) {
@@ -57,7 +32,14 @@ class ShoppingOrderController {
         }
 
         try {
-            shoppingOrderService.save(shoppingOrder)
+            if (shoppingOrder.getStatus().description == Constants.APPROVED) {
+                def article = Article.find {description == shoppingOrder.getArticleRequest().getArticle().getDescription() }
+                article.existence += shoppingOrder.getArticleRequest().getQuantity()
+                articleService.save(article)
+                shoppingOrderService.save(shoppingOrder)
+            } else {
+                shoppingOrderService.save(shoppingOrder)
+            }
         } catch (ValidationException e) {
             respond shoppingOrder.errors, view:'edit'
             return
