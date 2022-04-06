@@ -8,6 +8,7 @@ import grails.gorm.transactions.Transactional
 class BootStrap {
     def init = { servletContext ->
         addInitialUsers()
+        addStatuses()
     }
 
     def destroy = {
@@ -34,5 +35,12 @@ class BootStrap {
         if (!testUser.authorities.contains(userRole)) {
             UserRole.create(testUser, userRole)
         }
+    }
+
+    @Transactional
+    void addStatuses() {
+        Status.find { description ==  Constants.ACTIVE} ?: new Status(description: Constants.ACTIVE).save(failOnError: true)
+        Status.find { description ==  Constants.APPROVED} ?: new Status(description: Constants.APPROVED).save(failOnError: true)
+        Status.find { description ==  Constants.CANCELED}?: new Status(description: Constants.CANCELED).save(failOnError: true)
     }
 }
