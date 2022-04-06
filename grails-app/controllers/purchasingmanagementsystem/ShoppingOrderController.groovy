@@ -4,7 +4,6 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class ShoppingOrderController {
 
     ShoppingOrderService shoppingOrderService
@@ -12,19 +11,35 @@ class ShoppingOrderController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    @Secured(["ROLE_ADMIN", "ROLE_USER"])
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond shoppingOrderService.list(params), model:[shoppingOrderCount: shoppingOrderService.count()]
+
+        if (q == null){
+            respond shoppingOrderService.list(params), model:[shoppingOrderCount: shoppingOrderService.count()]
+        } else {
+            respond shoppingOrderService.list(params)
+                .findAll{
+                    it.identifier.toLowerCase().contains(q.toLowerCase()) ||
+                    it.orderDate.toString().toLowerCase().contains(q.toLowerCase()) ||
+                    it.articleRequest.toString().toLowerCase().contains(q.toLowerCase())
+                    it.status.toString().toLowerCase().contains(q.toLowerCase())
+                },
+            model:[shoppingOrderCount: shoppingOrderService.count()]
+        }
     }
 
+    @Secured(["ROLE_ADMIN", "ROLE_USER"])
     def show(Long id) {
         respond shoppingOrderService.get(id)
     }
 
+    @Secured(["ROLE_ADMIN"])
     def edit(Long id) {
         respond shoppingOrderService.get(id)
     }
 
+    @Secured(["ROLE_ADMIN"])
     def update(ShoppingOrder shoppingOrder) {
         if (shoppingOrder == null) {
             notFound()
@@ -54,6 +69,7 @@ class ShoppingOrderController {
         }
     }
 
+    @Secured(["ROLE_ADMIN"])
     def delete(Long id) {
         if (id == null) {
             notFound()
@@ -69,6 +85,22 @@ class ShoppingOrderController {
             }
             '*'{ render status: NO_CONTENT }
         }
+    }
+
+    @Secured(["ROLE_ADMIN", "ROLE_USER"])
+    def export() {
+        def title = "Id, Order Date, Status, Article Request, Identifier"
+        def body = ""
+        shoppingOrderService.list().each {
+            it -> {
+                body += "${it.id},${it.orderDate},${it.status},${it.articleRequest},${it.identifier}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
+
+        header "Content-disposition", "filename=ShoppingOrder.csv"
+        render(text: content, contentType:"text/csv")
     }
 
     protected void notFound() {
