@@ -11,11 +11,21 @@ class SupplierController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index(Integer max, String q) {
         params.max = Math.min(max ?: 10, 100)
-        respond supplierService.list(params), model:[supplierCount: supplierService.count()]
-    }
+        if (q == null) {
+            respond supplierService.list(params), model: [supplierCount: supplierService.count()]
+        } else {
+            respond supplierService.list(params)
+                    .findAll {
+                        it.description.toLowerCase().contains(q.toLowerCase()) ||
+                                it.identificationNumber.toString().toLowerCase().contains(q.toLowerCase()) ||
+                                it.comercialName.toLowerCase().contains(q.toLowerCase()) ||
+                                it.isActive.toString().toLowerCase().contains(q.toLowerCase())
 
+                    }, model: [supplierCount: supplierService.count()]
+        }
+    }
     def show(Long id) {
         respond supplierService.get(id)
     }
@@ -88,7 +98,20 @@ class SupplierController {
             '*'{ render status: NO_CONTENT }
         }
     }
+    def export() {
+        def title = "Id, Description, IdentificationNumber, ComercialName, IsActive"
+        def body = ""
+        supplierService.list().each {
+            it -> {
+                body += "${it.id},${it.description}, ${it.identificationNumber}, ${it.comercialName}, ${it.isActive}"
+                body += System.lineSeparator()
+            }
+        }
+        def content = "sep=," + System.lineSeparator() + title + System.lineSeparator() + body;
 
+        header "Content-disposition", "filename=Suppliers.csv"
+        render(text: content, contentType:"text/csv")
+    }
     protected void notFound() {
         request.withFormat {
             form multipartForm {
