@@ -18,6 +18,13 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
+             <g:form class="form" resource="${this.employee}" method="GET">
+                <g:textField class="search" name="q" />
+                <g:submitButton  class="search-btn" name="search" />
+            </g:form>
+            <g:form class="form" action="export" method="POST">
+                <g:submitButton class="export-btn" name="Export to CSV" />
+            </g:form>
             <f:table collection="${brandList}" />
 
             <div class="pagination">
