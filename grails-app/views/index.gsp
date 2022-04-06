@@ -36,9 +36,6 @@
                     <g:link controller="shoppingOrder">Shopping Order</g:link>
                 </li>
                 <li class="controller">
-                    <g:link controller="shoppingOrderDetail">Shopping Order Details</g:link>
-                </li>
-                <li class="controller">
                     <g:link controller="supplier">Suppliers</g:link>
                 </li>
                 <li class="controller">
